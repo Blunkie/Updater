@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'fr.inria.gforge.spoon:spoon-core:10.3.0-beta-13'
+}
+tasks.withType(JavaCompile.class) {
+    options.compilerArgs.add("--enable-preview")
+}
+
+test {
+    useJUnitPlatform()
+    jvmArgs("--enable-preview")
+}
+sourceCompatibility = JavaVersion.VERSION_18
+targetCompatibility = JavaVersion.VERSION_18
