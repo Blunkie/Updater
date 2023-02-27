@@ -27,6 +27,8 @@ public class Main
 	static HashMap<String, Long> bufferMethodGarbageMap = new HashMap<>();
 	public static void main(String[] args) throws IOException
 	{
+		String CLIENT_DOT_JAVA_SOURCE = "client.java";
+		String METEOR_CLIENT_DEOB_SOURCE = "meteor-client-main";
 		String MouseHandler_lastPressedTimeMillis;
 		String clientMouseLastLastPressedTimeMillis;
 		HashMap<Integer, String> menuActionMap = new HashMap<>();
@@ -71,7 +73,7 @@ public class Main
 		widgetActionMap.put(9, "IF_BUTTON9");
 		widgetActionMap.put(10, "IF_BUTTON10");
 		Launcher launcher = new Launcher();
-		launcher.addInputResource("meteor-client-main");
+		launcher.addInputResource(METEOR_CLIENT_DEOB_SOURCE);
 		launcher.getEnvironment().setComplianceLevel(11);
 		launcher.buildModel();
 		CtModel model = launcher.getModel();
@@ -144,7 +146,7 @@ public class Main
 		System.out.println("public static final String clientMouseLastLastPressedTimeMillis = \"" + clientMouseLastLastPressedTimeMillis + "\";");
 		System.out.println("public static final String MouseHandler_lastPressedTimeMillisClass = \"" + MouseHandler_lastPressedTimeMillis.split("\\.")[0] + "\";");
 		System.out.println("public static final String MouseHandler_lastPressedTimeMillisField = \"" + MouseHandler_lastPressedTimeMillis.split("\\.")[1] + "\";");
-		List<String> clientFileLines = Files.readAllLines(Paths.get("client.java"));
+		List<String> clientFileLines = Files.readAllLines(Paths.get(CLIENT_DOT_JAVA_SOURCE));
 		for (String line : clientFileLines)
 		{
 			if (line.contains(clientMouseLastLastPressedTimeMillis) && line.contains(MouseHandler_lastPressedTimeMillis) && line.contains("long var"))
@@ -556,8 +558,6 @@ public class Main
 			if (invoke.getType().toString().contains("PacketBufferNode"))
 			{
 				CtFieldReadImpl clientPacket = (CtFieldReadImpl) invoke.getArguments().get(0);
-				//System.out.println(clientPacket.getVariable().getDeclaration().getAnnotations().get(0)
-				// .getValueAsString("value"));
 				packet.obfuscatedName =
 						clientPacket.getVariable().getDeclaration().getAnnotations().get(0).getValueAsString("value");
 			}
