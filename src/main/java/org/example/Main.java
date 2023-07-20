@@ -83,6 +83,7 @@ public class Main
 
 
 		CtMethod menuAction = testPackage.filterChildren(child -> child instanceof CtMethod && ((CtMethod<?>) child).getSimpleName().equals("menuAction")).first();
+		System.out.println(menuAction.getParent());
 		menuAction.filterChildren(child -> child instanceof CtIf).forEach(child ->
 		{
 			CtIf childIf = (CtIf) child;
@@ -151,9 +152,9 @@ public class Main
 		{
 			if (line.contains(clientMouseLastLastPressedTimeMillis) && line.contains(MouseHandler_lastPressedTimeMillis) && line.contains("long var"))
 			{
-				System.out.println("public static final String MouseHandlerGarbage = \"" + line.split("-")[0].split("\\*")[1].replace(
+				System.out.println("public static final String MouseHandlerGarbage = \"" + line.split(" - ")[0].split("\\*")[1].replace(
 						"L", "").trim() + "\";");
-				System.out.println("public static final String ClientMouseHandlerGarbage= \"" + line.split("-")[1].split(
+				System.out.println("public static final String ClientMouseHandlerGarbage= \"" + line.split(" - ")[1].split(
 						"\\*")[1].replace("L", "").replace(";", "").trim() + "\";");
 			}
 			if (line.contains(clientMouseLastLastPressedTimeMillis + " = ") && line.contains(MouseHandler_lastPressedTimeMillis))
@@ -283,7 +284,7 @@ public class Main
 					{
 						return "worldPointY";
 					}
-					case String x && x.contains("getKeyPressed") ->
+					case String x && x.contains("(82)") ->
 					{
 						return "ctrlDown";
 					}
@@ -302,7 +303,7 @@ public class Main
 					{
 						return "mouseX";
 					}
-					case String x && x.contains("var3") ->
+					case String x && x.contains("var42") ->
 					{
 						return "mouseY";
 					}
@@ -337,7 +338,7 @@ public class Main
 					{
 						return "worldPointX";
 					}
-					case String x && x.contains("getKeyPressed") ->
+					case String x && x.contains("(82)") ->
 					{
 						return "ctrlDown";
 					}
@@ -364,7 +365,7 @@ public class Main
 					{
 						return "itemId";
 					}
-					case String x && x.contains("getKeyPressed") ->
+					case String x && x.contains("(82)") ->
 					{
 						return "ctrlDown";
 					}
@@ -391,7 +392,7 @@ public class Main
 					{
 						return "itemId";
 					}
-					case String x && x.contains("getKeyPressed") ->
+					case String x && x.contains("(82)") ->
 					{
 						return "ctrlDown";
 					}
@@ -408,7 +409,7 @@ public class Main
 				{
 					case String x && x.contains("var0") ->
 					{
-						return "destinationWidgetId";
+						return "destinationSlot";
 					}
 					case String x && x.contains("var4") ->
 					{
@@ -416,7 +417,7 @@ public class Main
 					}
 					case String x && x.contains("var1") ->
 					{
-						return "destinationSlot";
+						return "destinationWidgetId";
 					}
 					case String x && x.contains("selectedSpellItemId") ->
 					{
@@ -460,7 +461,7 @@ public class Main
 					{
 						return "worldPointX";
 					}
-					case String x && x.contains("getKeyPressed") ->
+					case String x && x.contains("(82)") ->
 					{
 						return "ctrlDown";
 					}
@@ -475,7 +476,7 @@ public class Main
 			{
 				switch (write)
 				{
-					case String x && x.contains("getKeyPressed") ->
+					case String x && x.contains("(82)") ->
 					{
 						return "ctrlDown";
 					}
@@ -490,7 +491,7 @@ public class Main
 			{
 				switch (write)
 				{
-					case String x && x.contains("getKeyPressed") ->
+					case String x && x.contains("(82)") ->
 					{
 						return "ctrlDown";
 					}
@@ -525,7 +526,7 @@ public class Main
 			{
 				switch (write)
 				{
-					case String x && x.contains("getKeyPressed") ->
+					case String x && x.contains("(82)") ->
 					{
 						return "ctrlDown";
 					}

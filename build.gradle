@@ -15,7 +15,7 @@ dependencies {
     implementation 'fr.inria.gforge.spoon:spoon-core:10.3.0-beta-13'
 }
 tasks.withType(JavaCompile.class) {
-    options.compilerArgs.add("--enable-preview")
+    it.options.compilerArgs.add("--enable-preview")
 }
 
 test {
